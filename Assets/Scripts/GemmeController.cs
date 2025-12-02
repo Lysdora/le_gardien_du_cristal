@@ -19,7 +19,7 @@ public class GemmeController : MonoBehaviour
             // Ajouter des points au score du joueur ici
             Debug.Log("Gemme collectée !");
             Destroy(gameObject);
-          
+
         }
     }
 }
