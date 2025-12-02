@@ -27,12 +27,13 @@
 ### ✅ Implémentées (Étapes 1-3)
 
 - [x] Mouvement du joueur (WASD/Flèches)
-- [x] Caméra qui suit le joueur avec limites
+- [x] Sprites directionnels du joueur (4 directions)
+- [x] Caméra qui suit le joueur avec limites (X et Y)
 - [x] Système de collecte de gemmes
-- [x] Inventaire et affichage UI
-- [x] Artefact qui perd de la vie automatiquement
-- [x] Système de nourrissage (gemmes → vie de l'artefact)
-- [x] Barre de vie de l'artefact
+- [x] Inventaire et affichage UI (compteur + icône)
+- [x] Artefact qui perd de la vie automatiquement (1 HP/s)
+- [x] Système de nourrissage (gemmes → +10 HP artefact)
+- [x] Barre de vie de l'artefact (UI Slider)
 - [x] Déplacement automatique des monstres
 
 ### 🔜 À venir (Étapes 4-6)
@@ -51,6 +52,7 @@
 ## 🎨 Assets
 
 Tous les assets graphiques ont été créés avec **Aseprite** :
+
 - Sprites du joueur (4 frames d'animation)
 - Sprite du monstre
 - Gemmes (rouge et normale)
@@ -61,13 +63,13 @@ Tous les assets graphiques ont été créés avec **Aseprite** :
 
 ## 🛠️ Technologies utilisées
 
-| Technologie | Version | Usage |
-|-------------|---------|-------|
-| **Unity** | 2022.3.62f3 | Moteur de jeu |
-| **C#** | .NET Standard 2.1 | Programmation |
-| **URP** | 14.0.12 | Rendu graphique |
-| **TextMeshPro** | 3.0.7 | Interface utilisateur |
-| **Aseprite** | - | Création des sprites |
+| Technologie     | Version           | Usage                 |
+| --------------- | ----------------- | --------------------- |
+| **Unity**       | 2022.3.62f3       | Moteur de jeu         |
+| **C#**          | .NET Standard 2.1 | Programmation         |
+| **URP**         | 14.0.12           | Rendu graphique       |
+| **TextMeshPro** | 3.0.7             | Interface utilisateur |
+| **Aseprite**    | -                 | Création des sprites  |
 
 ---
 
@@ -98,17 +100,20 @@ Assets/
 ## 🚀 Installation et lancement
 
 ### Prérequis
+
 - Unity 2022.3.62f3 (LTS)
 - Visual Studio 2022 ou JetBrains Rider
 
 ### Étapes
 
 1. **Clone le repository**
+
    ```bash
    git clone https://github.com/Lysdora/le_gardien_du_cristal.git
    ```
 
 2. **Ouvre le projet dans Unity Hub**
+
    - Add → Sélectionne le dossier du projet
    - Ouvre avec Unity 2022.3.62f3
 
@@ -120,18 +125,19 @@ Assets/
 
 ## 🎮 Contrôles
 
-| Touche | Action |
-|--------|--------|
-| **WASD** ou **Flèches** | Déplacer le joueur |
-| **E** | Nourrir l'artefact (près de lui) |
-| **Clic gauche** | Attaquer un monstre *(à venir)* |
-| **Échap** | Pause *(à venir)* |
+| Touche                  | Action                           |
+| ----------------------- | -------------------------------- |
+| **WASD** ou **Flèches** | Déplacer le joueur               |
+| **E**                   | Nourrir l'artefact (près de lui) |
+| **Clic gauche**         | Attaquer un monstre _(à venir)_  |
+| **Échap**               | Pause _(à venir)_                |
 
 ---
 
 ## 📚 Documentation
 
 Le projet contient un **guide complet de développement** dans `GUIDE_COMPLET.md` qui explique :
+
 - Le code ligne par ligne
 - Les concepts Unity importants
 - Les bonnes pratiques de programmation
@@ -144,6 +150,7 @@ Parfait pour apprendre Unity et C# !
 ## 🎓 Apprentissage
 
 Ce projet est développé dans un but pédagogique pour apprendre :
+
 - ✅ Les bases de Unity 2D
 - ✅ La programmation en C#
 - ✅ Les systèmes de gameplay (mouvement, collecte, combat)
@@ -181,6 +188,7 @@ Ce projet est développé à des fins d'apprentissage. Les assets graphiques son
 ## 👤 Auteur
 
 **Lysdora**
+
 - GitHub: [@Lysdora](https://github.com/Lysdora)
 - Projet créé en décembre 2025
 
