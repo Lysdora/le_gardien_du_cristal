@@ -47,9 +47,9 @@ Mettre en place les bases : joueur, caméra et mouvement.
 
 ---
 
-### 1.1 PlayerController.cs - Mouvement du joueur
+### 1.1 PlayerController.cs - Mouvement du joueur avec sprites directionnels
 
-**Concept clé :** Le joueur utilise un `Rigidbody2D` pour un mouvement physique réaliste.
+**Concept clé :** Le joueur utilise un `Rigidbody2D` pour un mouvement physique réaliste, et change de sprite selon la direction.
 
 ```csharp
 using UnityEngine;
@@ -59,11 +59,20 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 6f;
     private Vector2 moveInput;
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+
+    [Header("Sprites")]
+    [SerializeField] private Sprite downSprite;
+    [SerializeField] private Sprite upSprite;
+    [SerializeField] private Sprite leftSprite;
+    [SerializeField] private Sprite rightSprite;
 
     private void Awake()
     {
         // Récupère le composant Rigidbody2D attaché au GameObject
         rb = GetComponent<Rigidbody2D>();
+        // Récupère le SpriteRenderer pour changer les sprites
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -71,6 +80,8 @@ public class PlayerController : MonoBehaviour
         // Lit les inputs (WASD ou flèches)
         moveInput.x = Input.GetAxisRaw("Horizontal"); // -1, 0, ou 1
         moveInput.y = Input.GetAxisRaw("Vertical");
+        // Met à jour le sprite selon la direction
+        UpdateSpriteDirection();
     }
 
     private void FixedUpdate()
@@ -80,6 +91,28 @@ public class PlayerController : MonoBehaviour
         rb.velocity = moveInput.sqrMagnitude > 1f
             ? moveInput.normalized * moveSpeed
             : moveInput * moveSpeed;
+    }
+
+    void UpdateSpriteDirection()
+    {
+        // Change le sprite selon la direction du mouvement
+        if (moveInput.x > 0)
+        {
+            sr.sprite = rightSprite;
+        }
+        else if (moveInput.x < 0)
+        {
+            sr.sprite = leftSprite;
+        }
+        else if (moveInput.y > 0)
+        {
+            sr.sprite = upSprite;
+        }
+        else if (moveInput.y < 0)
+        {
+            sr.sprite = downSprite;
+        }
+        // Si aucun mouvement, le sprite reste inchangé
     }
 }
 ```
@@ -91,6 +124,10 @@ public class PlayerController : MonoBehaviour
 - `FixedUpdate()` : S'exécute à intervalle fixe - parfait pour la physique
 - `Input.GetAxisRaw()` : Retourne -1, 0, ou 1 (pas de smooth)
 - `moveInput.normalized` : Réduit le vecteur à une longueur de 1 (évite d'aller plus vite en diagonal)
+- `SpriteRenderer` : Composant qui affiche un sprite
+- `sr.sprite = ...` : Change le sprite affiché selon la direction
+- `[Header("Sprites")]` : Organise l'Inspector avec un titre
+- Priorité horizontale : Si on va en diagonale, le sprite horizontal est prioritaire
 
 **⚙️ Configuration Unity :**
 
@@ -99,6 +136,11 @@ public class PlayerController : MonoBehaviour
    - Gravity Scale : 0 (pas de gravité pour un jeu vu de haut)
    - Freeze Rotation Z : ✅ (évite que le player tourne)
 3. Tag : "Player" (important pour les collisions !)
+4. Dans l'Inspector, configure les 4 sprites directionnels :
+   - **Down Sprite** : Sprite du joueur regardant vers le bas
+   - **Up Sprite** : Sprite du joueur regardant vers le haut
+   - **Left Sprite** : Sprite du joueur regardant vers la gauche
+   - **Right Sprite** : Sprite du joueur regardant vers la droite
 
 ---
 
